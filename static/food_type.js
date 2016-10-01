@@ -15,6 +15,7 @@ var foodCount = {
 };
 
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // FUNCTIONS
 
@@ -72,7 +73,7 @@ var give_restaurant = function(){
     
 };
 
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Function that performs after HTML is loaded
 $(document).ready(function(){
 
@@ -101,10 +102,17 @@ $(document).ready(function(){
 
         // Do following if swiped left
         $("img").on("swipeleft",function(){
+            selection.push(currentFood.rest_type);
+            feeling = count_food();
             count+=1;
             currentFood = food_data.food[count];
             img.src = currentFood.image;
             alert("Swiping left");
+
+            // Check if reaching the end
+            if (count === 9){
+            alert("Mexican: " + foodCount.mexican + ", Asian: " + foodCount.asian + " , American: " + foodCount.american);
+            };
 
         });
 
@@ -115,8 +123,10 @@ $(document).ready(function(){
             console.log(foodCount);
             currentFood = food_data.food[count];
             img.src = currentFood.image;
+            
+            // Check if reaching the end
             if (count === 9){
-                alert('ENDING NOW');
+            alert("Mexican: " + foodCount.mexican + ", Asian: " + foodCount.asian + " , American: " + foodCount.american);
             };
         }); 
 
@@ -127,18 +137,15 @@ $(document).ready(function(){
             console.log('yes');
             console.log(foodCount);
 
-            if (feeling > 3){
-                alert(find_max());
+            count+=1;
+
+            // Check if reaching the end
+            if (count === 9){
+            alert("Mexican: " + foodCount.mexican + ", Asian: " + foodCount.asian + " , American: " + foodCount.american);
             };
 
-            count+=1;
-            if (count === 9){
-            alert('ENDING NOW');
-            };
             currentFood = food_data.food[count];
             img.src = currentFood.image;
-
-            //alert("YES: New picture:" + " " + selection);
         }); 
 
 /*

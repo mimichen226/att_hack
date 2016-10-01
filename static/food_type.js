@@ -1,28 +1,12 @@
-/*
-Function that associates food type with a value
-
-mexican = 0
-asian = 1
-american = 2
-
-var foodType = {
-    mexican: 0,
-    asian: 1,
-    american: 2
-};
-
-*/
+// GLOBAL VARIABLES 
 
 // Create a list of food selection
 var selection = [];
-
-//console.log(selection);
-
-
+var currentFood;
+var feeling;
 // Data holding food data
-var data = '{"food": [{"rest_type": "asian","foodname": "ramen","image": "http://static.wixstatic.com/media/78181f_6bca9a6dedd74e6b9c744c0fbea1dadb.jpg_srz_669_446_85_22_0.50_1.20_0.00_jpg_srz"},{"rest_type": "mexican","foodname": "taco","image": "http://s3.amazonaws.com/etntmedia/media/images/ext/102501580/taco-bell-shredded-chicken-soft-taco-md.jpg"},{"rest_type": "american","foodname": "pizza","image": "http://cache.boston.com/bonzai-fba/Original_Photo/2011/11/23/pizza__1322067494_5957.jpg"},{"rest_type": "american","foodname": "burger","image": "http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg"}]}';
-
-
+//var data = '{"food": [{"rest_type": "asian","foodname": "ramen","image": "http://static.wixstatic.com/media/78181f_6bca9a6dedd74e6b9c744c0fbea1dadb.jpg_srz_669_446_85_22_0.50_1.20_0.00_jpg_srz"},{"rest_type": "mexican","foodname": "taco","image": "http://s3.amazonaws.com/etntmedia/media/images/ext/102501580/taco-bell-shredded-chicken-soft-taco-md.jpg"},{"rest_type": "american","foodname": "pizza","image": "http://cache.boston.com/bonzai-fba/Original_Photo/2011/11/23/pizza__1322067494_5957.jpg"},{"rest_type": "american","foodname": "burger","image": "http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg"},{"rest_type": " ","foodname": " ","image": "https://secure.static.tumblr.com/23b7a2ddc35b0dbb8fcf30fa9062c812/rd5zybt/uRYnkbaam/tumblr_static_b457m5mq054w88k8kw48s84s4_640_v2.png"}]}';
+var data = '{"food": [{"rest_type": "mexican","foodname": "burrito","image": "http://www.cheatsheet.com/wp-content/uploads/2015/04/hot-fresh-breakfast-burrito.jpg"},{"rest_type": "asian","foodname": "chowmein","image": "http://a.ctimg.net/6XefNw7DRYqzu99EuqarJw/recipechicken-chow-mein.jpg"},{"rest_type": "mexican","foodname": "taco","image": "http://s3.amazonaws.com/etntmedia/media/images/ext/102501580/taco-bell-shredded-chicken-soft-taco-md.jpg"},{"rest_type": "american","foodname": "maccheese","image": "http://spicysouthernkitchen.com/wp-content/uploads/velveeta-mac-and-cheese-22.jpg"},{"rest_type": "asian","foodname": "ramen","image": "http://static.wixstatic.com/media/78181f_6bca9a6dedd74e6b9c744c0fbea1dadb.jpg_srz_669_446_85_22_0.50_1.20_0.00_jpg_srz"},{"rest_type": "mexican","foodname": "enchillada","image": "http://www.drodd.com/images15/enchilada-recipe19.jpeg"},{"rest_type": "american","foodname": "pizza","image": "http://cache.boston.com/bonzai-fba/Original_Photo/2011/11/23/pizza__1322067494_5957.jpg"},{"rest_type": "american","foodname": "burger","image": "http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg"},{"rest_type": "asian","foodname": "bao","image": "http://www.cinamilano.it/wp-content/uploads/2014/05/baozi.jpg"},{"rest_type": " ","foodname": " ","image": "https://secure.static.tumblr.com/23b7a2ddc35b0dbb8fcf30fa9062c812/rd5zybt/uRYnkbaam/tumblr_static_b457m5mq054w88k8kw48s84s4_640_v2.png"}]}';
 // New dictionary -- key: foodtype, value: count
 var foodCount = {
     mexican: 0,
@@ -31,19 +15,14 @@ var foodCount = {
 };
 
 
-//console.log(foodCount);
 
-// Function adds food to selection
-var add_to_foodCount = function(food){
-    selection.push(food)
-}
-
+// FUNCTIONS
 
 // Function that counts how many mexican, american, asian food by changing foodCount
 var count_food = function(){
     var total;
-    // Loop through selection to count the food type user selected
-    for (i = 0; i < selection.length;i++){
+    // Add to count dictionary
+        var i = selection.length - 1;
         if (selection[i] === 'mexican'){
             foodCount.mexican += 1;
         }
@@ -53,20 +32,23 @@ var count_food = function(){
         else if (selection[i] === 'american'){
             foodCount.american += 1;
         }
-    }
-    //total = foodCount.american + foodCount.mexican + foodCount.asian;
 
     // Determine foodCount max value
-        var arr = Object.keys( foodCount ).map(function ( key ) { return foodCount[key]; });
-        var min = Math.min.apply( null, arr );
-        var max = Math.max.apply( null, arr );
-    //console.log(max);
+    var arr = Object.keys( foodCount ).map(function ( key ) { return foodCount[key]; });
+    //var min = Math.min.apply( null, arr );
+    var max = Math.max.apply( null, arr );
+
     return max;
 }
-    //console.log(foodCount);
-    
 
-var find_max = function(){
+// Check total yes to food
+var check_yes = function(){
+    var total_yes = foodCount.american + foodCount.mexican + foodCount.asian;
+    return total_yes;
+}
+
+// Determine which restaurant based upon max in list
+var give_restaurant = function(){
     // Prints key with max value in dictionary
     var max = Object.keys(foodCount).reduce(function(a, b){ return foodCount[a] > foodCount[b] ? a : b });
     //console.log(max);
@@ -91,27 +73,14 @@ var find_max = function(){
 };
 
 
-// Function that creates a click button
-function click_button(){
-    document.getElementById("pop-up").innerHTML = "Paragraph changed!";
-
-};
-
-// Function that checks if works
-var checkCount = function(){
-    console.log("It works!!");
-};
-var currentFood;
 // Function that performs after HTML is loaded
 $(document).ready(function(){
+
     // Parse data 
     var food_data = JSON.parse(data);
     console.log(food_data);
-    //console.log(food_data.food[0].rest_type);
-
-    // Loop through every element in food_data
-    //for (i = 0; i < food_data.food.length; i++){
-        var count = 0;
+        
+        var count = 0; // index for food
         currentFood = food_data.food[count];
 
     // Show image
@@ -142,28 +111,34 @@ $(document).ready(function(){
         // Click "no"
         $("button.no").click(function(){
             count+=1;
-            feeling = count_food();
+            console.log('no');
+            console.log(foodCount);
             currentFood = food_data.food[count];
             img.src = currentFood.image;
-            alert("NO: New picture:" + " " + selection);
+            if (count === 9){
+                alert('ENDING NOW');
+            };
         }); 
 
         // Click "yes"
         $("button.yes").click(function(){
             selection.push(currentFood.rest_type);
-            var feeling = count_food();
-            alert(feeling);
+            feeling = count_food();
+            console.log('yes');
+            console.log(foodCount);
 
-            /*if (feeling > 3){
+            if (feeling > 3){
                 alert(find_max());
             };
-            */
 
             count+=1;
+            if (count === 9){
+            alert('ENDING NOW');
+            };
             currentFood = food_data.food[count];
             img.src = currentFood.image;
 
-            alert("YES: New picture:" + " " + selection);
+            //alert("YES: New picture:" + " " + selection);
         }); 
 
 /*

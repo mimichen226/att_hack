@@ -1,3 +1,10 @@
+var food = {'taco':0,'burrito':0,'fajita':0,'quesadilla':0,'enchillada':0,
+        'rice':1, 'ramen':1,'wonton':1,'bao':1,'dumpling':1,
+        'fries':2,'pizza':2,'hamburger':2,'sandwich':2,'macncheese':2};
+var response = {'Mexican':0,'Asian':0,'American':0};
+var taco = document.getElementById('yourImgId');
+
+
 $(document).ready(function(){
 
     $(".buddy").on("swiperight",function(){

@@ -5,6 +5,7 @@ var response = {'Mexican':0,'Asian':0,'American':0};
 var taco = document.getElementById('yourImgId');
 
 
+
 $(document).ready(function(){
 
     $(".buddy").on("swiperight",function(){
@@ -32,3 +33,20 @@ $(document).ready(function(){
   });
 
 });
+
+
+
+for (item in food) {
+    answer = raw_input("{}? ".format(item))
+    if answer == 'yes':
+        ugh.append(food[item])
+}
+
+for (index in ugh) {
+    if index == 0:
+        response['Mexican'] += 1
+    if index == 1:
+        response['Asian'] += 1
+    if index == 2:
+        response['American'] += 1
+}

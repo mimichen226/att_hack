@@ -1,0 +1,24 @@
+{
+   "food": [
+      {
+         "rest_type": "mexican",
+         "foodname": "taco",
+         "image": "http://s3.amazonaws.com/etntmedia/media/images/ext/102501580/taco-bell-shredded-chicken-soft-taco-md.jpg"
+      },
+      {
+         "rest_type": "asian",
+         "foodname": "ramen",
+         "image": "http://static.wixstatic.com/media/78181f_6bca9a6dedd74e6b9c744c0fbea1dadb.jpg_srz_669_446_85_22_0.50_1.20_0.00_jpg_srz"
+      },
+      {
+         "rest_type": "american",
+         "foodname": "pizza",
+         "image": "http://cache.boston.com/bonzai-fba/Original_Photo/2011/11/23/pizza__1322067494_5957.jpg"
+      },
+      {
+         "rest_type": "american",
+         "foodname": "burger",
+         "image": "http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg"
+      }
+   ]
+}

@@ -13,9 +13,10 @@
 
 <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
 
+
 </head>
 <body>
-  <h1 id="header" style="font-family:cursive">
+  <h1 id="header" style="font-family:'Helvetica'">
       <p><img src="https://github.com/mimichen226/att_hack/blob/master/static/images/foodtindericon.png?raw=true" /></p>
     <strong>Like what you see?</strong>
   </h1>
@@ -23,7 +24,12 @@
   <div id="container" style="text-align:center" width="20" height="40">
     <div class="banner-section" id ="img-container" width="20" height="40">
       </div>
+
+  <!-- Print message that user and restaurant like each other -->
+  <div id="message" style="text-align:center; font-size:24px; font-family:'Helvetica'">
+  </div> 
     
+  <!-- Display image of user and restaurant -->
 <div class="divider"/>
 <img id="restaurant-pic" style="display:none;width:300px;height:180px;float: left; width: 33%; margin-right: 1%; margin-bottom: 0.5em;"/>
 &nbsp; &nbsp; &nbsp;
@@ -32,11 +38,18 @@
 </div>
   </div>
 
-  <div id="pop-up" style="text-align:center; font-size:50px; font-family:cursive; font-weight:bold">
+<!-- Show restaurant name and address -->
+  <div id="pop-up" style="text-align:center; font-size:50px; font-family:'Helvetica'; font-weight:bold">
   </div>
-  <div id = "address" style="text-align:center; font-size:30px; font-family:cursive">
+  <div id = "address" style="text-align:center; font-size:30px; font-family:'Helvetica'">
   </div>
+<!-- Show the map of google -->
+  <iframe id = "googlemap" style="display:none" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 
+ <!-- Display yelp review for Salsas-->
+  <!--div id="yelp-salsas" style = "display:none;">
+    <span class="yelp-review" data-review-id="yV2AlrC3zrBRcvvaddgvGQ" data-hostname="www.yelp.com">Read <a href="https://www.yelp.com/user_details?userid=SvXzxrg6DV1yF8uf0pbFuw" rel="nofollow noopener">Daniel D.</a>'s <a href="https://www.yelp.com/biz/salsas-mexican-grill-mishawaka?hrid=yV2AlrC3zrBRcvvaddgvGQ" rel="nofollow noopener">review</a> of <a href="https://www.yelp.com/biz/rXZqfdq_xEP8Rnmc12lO4Q" rel="nofollow noopener">Salsa's Mexican Grill</a> on <a href="https://www.yelp.com" rel="nofollow noopener">Yelp</a><script async="async" src="https://www.yelp.com/embed/widgets.js" type="text/javascript"></script></span>
+  </div-->
 
 <!--<div class="custom-buttons" style="text-align:center">-->
 <div style="text-align: center">

@@ -86,6 +86,7 @@ var insertHTML = function(){
             document.getElementById("restaurant-pic").style.display = "block";
             document.getElementById("btnYes").style.display = "none";
             document.getElementById("btnNo").style.display = "none";
+            document.getElementById("header").style.display = "none";
 };
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------

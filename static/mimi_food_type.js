@@ -1,0 +1,189 @@
+// GLOBAL VARIABLES 
+
+// Create a list of food selection
+var selection = [];
+var currentFood;
+var feeling;
+// Data holding food data
+//var data = '{"food": [{"rest_type": "asian","foodname": "ramen","image": "http://static.wixstatic.com/media/78181f_6bca9a6dedd74e6b9c744c0fbea1dadb.jpg_srz_669_446_85_22_0.50_1.20_0.00_jpg_srz"},{"rest_type": "mexican","foodname": "taco","image": "http://s3.amazonaws.com/etntmedia/media/images/ext/102501580/taco-bell-shredded-chicken-soft-taco-md.jpg"},{"rest_type": "american","foodname": "pizza","image": "http://cache.boston.com/bonzai-fba/Original_Photo/2011/11/23/pizza__1322067494_5957.jpg"},{"rest_type": "american","foodname": "burger","image": "http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg"},{"rest_type": " ","foodname": " ","image": "https://secure.static.tumblr.com/23b7a2ddc35b0dbb8fcf30fa9062c812/rd5zybt/uRYnkbaam/tumblr_static_b457m5mq054w88k8kw48s84s4_640_v2.png"}]}';
+var data = '{"food": [{"rest_type": "mexican","foodname": "burrito","image": "http://www.cheatsheet.com/wp-content/uploads/2015/04/hot-fresh-breakfast-burrito.jpg"},{"rest_type": "asian","foodname": "chowmein","image": "http://a.ctimg.net/6XefNw7DRYqzu99EuqarJw/recipechicken-chow-mein.jpg"},{"rest_type": "mexican","foodname": "taco","image": "http://s3.amazonaws.com/etntmedia/media/images/ext/102501580/taco-bell-shredded-chicken-soft-taco-md.jpg"},{"rest_type": "american","foodname": "maccheese","image": "http://spicysouthernkitchen.com/wp-content/uploads/velveeta-mac-and-cheese-22.jpg"},{"rest_type": "asian","foodname": "ramen","image": "http://static.wixstatic.com/media/78181f_6bca9a6dedd74e6b9c744c0fbea1dadb.jpg_srz_669_446_85_22_0.50_1.20_0.00_jpg_srz"},{"rest_type": "mexican","foodname": "enchillada","image": "http://www.drodd.com/images15/enchilada-recipe19.jpeg"},{"rest_type": "american","foodname": "pizza","image": "http://cache.boston.com/bonzai-fba/Original_Photo/2011/11/23/pizza__1322067494_5957.jpg"},{"rest_type": "american","foodname": "burger","image": "http://www.tastyburger.com/wp-content/themes/tastyBurger/images/home/img-large-burger.jpg"},{"rest_type": "asian","foodname": "bao","image": "http://www.cinamilano.it/wp-content/uploads/2014/05/baozi.jpg"},{"rest_type": " ","foodname": " ","image": "https://secure.static.tumblr.com/23b7a2ddc35b0dbb8fcf30fa9062c812/rd5zybt/uRYnkbaam/tumblr_static_b457m5mq054w88k8kw48s84s4_640_v2.png"}]}';
+var restaurant = '{"restaurant": [{"rest_type": "mexican","rest_name": "Salsas","address": "Grape & Day Center, 4160 Grape Rd, Mishawaka, IN 46545","image": "https://media-cdn.tripadvisor.com/media/photo-s/02/d7/d2/bb/salsa-s.jpg"},{"rest_type": "asian","rest_name": "JW Chen","address": "1835 S Bend Ave, South Bend, IN 46637","image": "https://media-cdn.tripadvisor.com/media/photo-s/0b/98/80/5e/jw-chen-s.jpg"},{"rest_type": "mexican-american","rest_name": "Chipotle","address": "Eddy Street Commons, 1251 N Eddy St #101, South Bend, IN 46601","image": "http://i.huffpost.com/gen/2871550/images/o-CHIPOTLE-DELIVERY-facebook.jpg"},{"rest_type": "american","rest_name": "Five Guys","address": "Eddy Street Commons, 1233 N Eddy St, South Bend, IN 46617","image": "http://i3.liverpoolecho.co.uk/incoming/article10217278.ece/ALTERNATES/s1227b/Five-Guys-Uxbridge-LR-87.jpg"},{"rest_type": "asian-american","rest_name": "Panda Express","address": "4906 Grape Rd, Mishawaka, IN 46544","image": "http://static.comicvine.com/uploads/original/11113/111130700/4588389-4060048401-2c30f.jpg"},{"rest_type": "asian-mexican","rest_name": "South Dining Hall","address": "Notre Dame, IN 46556","image": "http://my.nd.edu/s/1210/images/editor/_cheer/on_the_list/sdh2_directions.jpg"}]}';
+var userpic = 'https://scontent-mia1-1.xx.fbcdn.net/t31.0-8/13668841_10210397431281399_3259840521270077020_o.jpg';
+// New dictionary -- key: foodtype, value: count
+var foodCount = {
+    mexican: 0,
+    asian: 0,
+    american:0
+};
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// FUNCTIONS
+
+// Function that counts how many mexican, american, asian food by changing foodCount
+var count_food = function(){
+    var total;
+    // Add to count dictionary
+        var i = selection.length - 1;
+        if (selection[i] === 'mexican'){
+            foodCount.mexican += 1;
+        }
+        else if (selection[i] === 'asian'){
+            foodCount.asian += 1;
+        }
+        else if (selection[i] === 'american'){
+            foodCount.american += 1;
+        }
+
+    // Determine foodCount max value
+    var arr = Object.keys( foodCount ).map(function ( key ) { return foodCount[key]; });
+    //var min = Math.min.apply( null, arr );
+    var max = Math.max.apply( null, arr );
+
+    return max;
+}
+
+// Check total yes to food
+var check_yes = function(){
+    var total_yes = foodCount.american + foodCount.mexican + foodCount.asian;
+    return total_yes;
+}
+
+// Determine which restaurant based upon max in list
+var give_restaurant = function(){
+    // Prints key with max value in dictionary
+    //var max = Object.keys(foodCount).reduce(function(a, b){ return foodCount[a] > foodCount[b] ? a : b });
+    //console.log(max);
+
+    // Select a restaurant 
+    var restaurant_data = JSON.parse(restaurant);
+
+    if ((foodCount.asian > foodCount.mexican) && (foodCount.asian > foodCount.american)){
+        rec_restaurant = restaurant_data.restaurant[1];
+    }
+    else if ((foodCount.asian > foodCount.mexican) && (foodCount.asian === foodCount.american)){
+        rec_restaurant = restaurant_data.restaurant[4];
+    }
+    else if ((foodCount.mexican > foodCount.asian) && (foodCount.mexican > foodCount.american)){
+        rec_restaurant = restaurant_data.restaurant[0];
+    }
+    else if ((foodCount.american > foodCount.asian) && (foodCount.american > foodCount.mexican)){
+        rec_restaurant = restaurant_data.restaurant[3];
+    }
+    else if ((foodCount.american > foodCount.asian) && (foodCount.american === foodCount.mexican)){
+        rec_restaurant = restaurant_data.restaurant[2];
+    }
+    else{
+        rec_restaurant = restaurant_data.restaurant[5];
+    }
+
+    return rec_restaurant;
+    
+};
+
+// Insert into HTML file
+var insertHTML = function(){
+            var go_here = give_restaurant();
+            document.getElementById("pop-up").innerHTML = go_here.rest_name;
+            document.getElementById("address").innerHTML = go_here.address ;
+            document.getElementById("restaurant-pic").src = go_here.image;
+            document.getElementById("user-pic").src= userpic;
+            document.getElementById("user-pic").style.display="block";
+            document.getElementById("restaurant-pic").style.display = "block";
+            document.getElementById("btnYes").style.display = "none";
+            document.getElementById("btnNo").style.display = "none";
+};
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Function that performs after HTML is loaded
+$(document).ready(function(){
+
+    // Parse data 
+    var food_data = JSON.parse(data);
+    console.log(food_data);
+        
+        var count = 0; // index for food
+        currentFood = food_data.food[count];
+
+    // Show image
+        var img = new Image();
+        img.src = currentFood.image;
+        img.setAttribute("class", "swipable-img");
+        img.setAttribute("alt", "effy");
+        document.getElementById("img-container").appendChild(img);
+
+        // Do following if swiped right
+        $("img").on("swiperight",function(){
+            count+=1;
+            currentFood = food_data.food[count];
+            img.src = currentFood.image;
+            //alert("Swiping right");
+            if (count === 9){
+            alert("Mexican: " + foodCount.mexican + ", Asian: " + foodCount.asian + " , American: " + foodCount.american);
+            insertHTML();
+
+            };
+
+        });
+
+        // Do following if swiped left
+        $("img").on("swipeleft",function(){
+            selection.push(currentFood.rest_type);
+            feeling = count_food();
+            count+=1;
+            currentFood = food_data.food[count];
+            img.src = currentFood.image;
+            //alert("Swiping left");
+
+            // Check if reaching the end
+            if (count === 9){
+            alert("Mexican: " + foodCount.mexican + ", Asian: " + foodCount.asian + " , American: " + foodCount.american);
+            var go_here = give_restaurant();
+
+            insertHTML();
+
+            };
+
+        });
+
+        // Click "no"
+        $("button.no").click(function(){
+            count+=1;
+            console.log('no');
+            console.log(foodCount);
+            currentFood = food_data.food[count];
+            img.src = currentFood.image;
+            
+            // Check if reaching the end
+            if (count === 9){
+            alert("Mexican: " + foodCount.mexican + ", Asian: " + foodCount.asian + " , American: " + foodCount.american);
+            var go_here = give_restaurant();
+
+            insertHTML();
+
+            };
+        }); 
+
+        // Click "yes"
+        $("button.yes").click(function(){
+            selection.push(currentFood.rest_type);
+            feeling = count_food();
+            console.log('yes');
+            console.log(foodCount);
+
+            count+=1;
+
+            // Check if reaching the end
+            if (count === 9){
+                alert("Mexican: " + foodCount.mexican + ", Asian: " + foodCount.asian + " , American: " + foodCount.american);
+                
+                insertHTML();
+
+            };
+
+            currentFood = food_data.food[count];
+            img.src = currentFood.image;
+        }); 
+
+});

@@ -3,3 +3,31 @@ div img{
          height: 400px;
  }
 
+button img{
+        width: 150px;
+        height: 150px;
+ }
+
+ button {
+     height: 80px;
+     width: 80px;
+     background-color: #FDFDFD;
+     border-radius: 150px;
+     border: 20px solid #DBD8D7;
+ }
+
+ p img{
+   width: 100px;
+   height: 100px;
+ }
+
+ .divider{
+     width:600px;
+     min-height:10px;
+     display:inline-block;
+ }
+
+h1 {
+  text-align:center;
+  font-family: Arial;
+}

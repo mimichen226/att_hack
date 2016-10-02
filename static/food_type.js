@@ -166,6 +166,8 @@ $(document).ready(function(){
             console.log(foodCount);
 
             count+=1;
+            currentFood = food_data.food[count];
+            img.src = currentFood.image;
 
             // Check if reaching the end
             if (count === 9){
@@ -175,8 +177,7 @@ $(document).ready(function(){
 
             };
 
-            currentFood = food_data.food[count];
-            img.src = currentFood.image;
+
         }); 
 
 });

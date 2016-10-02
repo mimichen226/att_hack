@@ -1,4 +1,4 @@
-// GLOBAL VARIABLES 
+// GLOBAL VARIABLES
 
 // Create a list of food selection
 var selection = [];
@@ -55,8 +55,8 @@ var give_restaurant = function(){
     // Prints key with max value in dictionary
     //var max = Object.keys(foodCount).reduce(function(a, b){ return foodCount[a] > foodCount[b] ? a : b });
     //console.log(max);
-    
-    // Create list of restaurant 
+
+    // Create list of restaurant
     // Can create one list, and just random generate between certain numbers
     /*
     var asian_rest = ['Ichiban','Creasian',"JW Chen's",'Seoul Garden'];
@@ -95,17 +95,17 @@ var give_restaurant = function(){
     }
 
     return rec_restaurant;
-    
+
 };
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Function that performs after HTML is loaded
 $(document).ready(function(){
 
-    // Parse data 
+    // Parse data
     var food_data = JSON.parse(data);
     console.log(food_data);
-        
+
         var count = 0; // index for food
         currentFood = food_data.food[count];
 
@@ -148,7 +148,7 @@ $(document).ready(function(){
             console.log(foodCount);
             currentFood = food_data.food[count];
             img.src = currentFood.image;
-            
+
             // Check if reaching the end
             if (count === 9){
             alert("Mexican: " + foodCount.mexican + ", Asian: " + foodCount.asian + " , American: " + foodCount.american);
@@ -158,7 +158,7 @@ $(document).ready(function(){
             document.getElementById("restaurant-pic").src = go_here.image;
 
             };
-        }); 
+        });
 
         // Click "yes"
         $("button.yes").click(function(){
@@ -176,11 +176,14 @@ $(document).ready(function(){
                 document.getElementById("pop-up").innerHTML = go_here.rest_name;
                 document.getElementById("address").innerHTML = go_here.address ;
                 document.getElementById("restaurant-pic").src =  go_here.image;
+              document.getElementById("restaurant-pic").style.display = "block";
+              document.getElementById("btnYes").style.display = "none";
+              document.getElementById("btnNo").style.display = "none";
             };
 
             currentFood = food_data.food[count];
             img.src = currentFood.image;
-        }); 
+        });
 
 /*
         function click_no(){
@@ -190,7 +193,7 @@ $(document).ready(function(){
             alert("New picture");
         }*/
 
-    
+
 
     // Function for swiping right
     /*
@@ -200,38 +203,31 @@ $(document).ready(function(){
       selection.push();
       checkCount();
       $('.swipable-img').find('.status').remove();
-
       $(this).append('<div class="status like">Like!</div>');     // Display the message "Like!"
-
-
       if ( $(this).is(':last-child') ) {
         $('.swipable-img:nth-child(1)').removeClass ('rotate-left rotate-right').fadeIn(300);
        } else {
           $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);}
        // var currentFood = food_data.food[count];
-
         var currentFood = food_data.food[count];
-
         // Show image
         var img = new Image();
         img.src = currentFood.image;
         img.setAttribute("class", "swipable-img");
         img.setAttribute("alt", "effy");
         document.getElementById("img-container").appendChild(img);
-       
-    });  
 
-    // Function for swiping left 
+    });
+    // Function for swiping left
    $(".swipable-img").on("swipeleft",function(){
     $(this).addClass('rotate-right').delay(700).fadeOut(1);       // Rotate image after swiping
     $('.swipable-img').find('.status').remove();
     $(this).append('<div class="status dislike">Dislike</div>');   // Dsiplay the message "Dislike"
-
     if ( $(this).is(':last-child') ) {
      $('.swipable-img:nth-child(1)').removeClass ('rotate-left rotate-right').fadeIn(300);
      } else {
         $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
-    } 
+    }
   });
 */
 
